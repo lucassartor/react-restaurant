@@ -210,8 +210,9 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
         method: "POST",
         body: JSON.stringify(newFeedback),
         headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://localhost:8080"
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
         credentials: "same-origin"
     })
