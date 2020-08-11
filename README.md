@@ -1,0 +1,1 @@
+Made with React, Redux and a local json-server database.
