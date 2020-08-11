@@ -2,27 +2,28 @@ import * as ActionTypes from './ActionTypes';
 import {baseUrl} from "../shared/baseUrl";
 
 //Retorna um novo objeto
-export const addComment = (comment) => ({
+export const addComment = (comments) => ({
     type: ActionTypes.ADD_COMMENT,
-    payload: comment
+    payload: comments
 });
 
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
-
     const newComment = {
         dishId: dishId,
         rating: rating,
         author: author,
         comment: comment
     };
-    newComment.date = new Date().toISOString();
+    //newComment.date = new Date().toISOString();
 
     return fetch(baseUrl + 'comments', {
         method: "POST",
-        body: JSON.stringify(newComment),
-        headers: {
-            "Content-Type": "application/json"
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
+        body: JSON.stringify(newComment),
         credentials: "same-origin"
     })
         .then(response => {
@@ -49,18 +50,20 @@ export const fetchDishes = () => (dispatch) => {
 
     //Promise response
     return fetch(baseUrl + 'dishes')
+
         .then(response => {
                 if (response.ok) {
                     return response;
                 } else {
                     var error = new Error('Error ' + response.status + ': ' + response.statusText);
                     error.response = response;
+                    console.log(response);
                     throw error;
                 }
             },
             error => {
-                var errmess = new Error(error.message);
-                throw errmess;
+                throw new Error(error.message);
+
             })
         .then(response => response.json())
         .then(dishes => dispatch(addDishes(dishes)))
@@ -208,7 +211,8 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
         method: "POST",
         body: JSON.stringify(newFeedback),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:8080"
         },
         credentials: "same-origin"
     })

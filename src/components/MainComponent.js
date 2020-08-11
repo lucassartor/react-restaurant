@@ -12,9 +12,8 @@ import {postComment, postFeedback, fetchDishes, fetchComments, fetchPromos, fetc
 import {actions} from "react-redux-form";
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
-//Transforma o State atual ques está no Stre nos Props dos components
-const mapStateToProps = state => {
-    return {
+//Transforma o State atual ques está no Store nos Props dos components
+const mapStateToProps = state => {    return {
         dishes: state.dishes,
         comments: state.comments,
         promotions: state.promotions,

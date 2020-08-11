@@ -29,7 +29,8 @@ class CommentForm extends Component{
 
     handleSubmit(values) {
         this.toggleModal();
-        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+        //console.log(this.props.dishId);
+        this.props.postComment(this.props.dishId, values.rating, values.comment, values.author);
     }
 
     render() {
@@ -153,8 +154,8 @@ function DishDetail({selectedDish, comments, postComment, isLoading, errMess}){
                                 return(
                                     <Fade in>
                                         <div key={comment.id} style={{marginBottom: "20px"}}>
-                                            <div style={{marginBottom: "10px"}}>{comment.comment}</div>
-                                            <div>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</div>
+                                            <div style={{marginBottom: "10px"}}>{comment.author}</div>
+                                            <div>-- {comment.comment} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</div>
                                         </div>
                                     </Fade>
                                 );
