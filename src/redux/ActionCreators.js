@@ -23,8 +23,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify(newComment),
-        credentials: "same-origin"
+        body: JSON.stringify(newComment)
     })
         .then(response => {
                 if (response.ok) {
